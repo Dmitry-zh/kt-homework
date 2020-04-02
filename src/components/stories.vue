@@ -34,11 +34,12 @@ export default {
 
 <style scoped>
 .stories {
-  width: 98vw;
+  position: absolute;
+  width: 100vw;
   left: 0;
   font-size: 12px;
   text-align: center;
-  margin-top: 7vh;
+  margin-top: 5.2vh;
   height: 16vh;
   display: flex;
   flex-direction: row;
