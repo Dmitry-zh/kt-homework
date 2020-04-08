@@ -1,17 +1,19 @@
 <template>
-<div>Профайл
+<div>
+ <profileTop/>
  <bottom/>
  </div>
 </template>
 
 <script>
 import bottom from '@/components/Bottom.vue'
+import profileTop from '@/components/profileTop.vue'
 export default {
   data() {
       return {
 
       }
   },
-  components: {bottom}  
+  components: {bottom, profileTop}  
 }
 </script>

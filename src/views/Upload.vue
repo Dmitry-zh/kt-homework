@@ -1,5 +1,5 @@
 <template>
-<div>Загрузка
+<div>Загрузить фото //будущая реализация
  <bottom/>
  </div>
 </template>

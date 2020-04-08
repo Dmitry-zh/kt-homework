@@ -1,5 +1,5 @@
 <template>
-<div>Активити
+<div>Активити //будущая реализация
  <bottom/> 
  </div>
 </template>
