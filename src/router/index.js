@@ -6,6 +6,7 @@ import Home from '@/views/Home'
 import Interesting from '@/views/Interesting'
 import Profile from '@/views/Profile'
 import Upload from '@/views/Upload'
+import EdtProfile from '@/views/EdtProfile'
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
     path: '/upload',
     name: 'Upload',
     component: Upload
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: EdtProfile
   },
   {
     path: '*',

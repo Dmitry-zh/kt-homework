@@ -27,7 +27,9 @@
     <div class="userName">{{user.name()}}</div>
     <div class="about"> {{user.bio}}
     </div>
-   <div class="edit"><a href="undefined.com">Edit profile</a></div>
+   <div class="edit">
+    <router-link tag="a" :to="{name: 'Edit'}">Edit profile</router-link>
+   </div>
    </div>
 </template>
 
