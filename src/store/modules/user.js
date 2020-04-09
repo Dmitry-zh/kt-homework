@@ -1,17 +1,20 @@
 const state = {
     user: {
-        login: 'login',
-        firstName: 'Firstname',
-        secondName: 'Secondname',
-        name() {
-            return this.firstName + " " + this.secondName;
+        info :{
+            login: '???',
+            firstname: '???',
+            surname: '???',
+            bio: '???',
+            website: '???',
+            avatarSrc: './static/stories/user.jpg',
         },
-        bio: 'someBiography', 
-        avatarSrc: './static/stories/user.jpg',
+        name() {
+            return this.info.firstname + " " + this.info.surname;
+        },
         followers: 0,
         following: 0,
         publications: 0,
-        website: 'www.leningrad.spb.ru',
+        
     }
 };
 
@@ -20,11 +23,15 @@ const getters = {
 };
 
 const actions = {
-
+    changeUserInfo: ({commit}, newInfo) => {
+        commit('mutateUserInfo', newInfo);
+    },
 };
 
 const mutations = {
-
+    mutateUserInfo(state, newInfo) {
+        state.user.info = newInfo;
+    }
 };
 
 export default {

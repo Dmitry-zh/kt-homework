@@ -2,7 +2,7 @@
  <div>
   <div class="top">
    <div class="profileName">
-    {{user.login}}
+    {{user.info.login}}
    </div>
    <div class="menu">
     <img src="https://image.flaticon.com/icons/svg/545/545705.svg">
@@ -11,7 +11,7 @@
   <div class="info">
      <div class="avatar">
       <div class="avatarImg">
-       <img :src="user.avatarSrc">
+       <img :src="user.info.avatarSrc">
        <div class="plus">
         <img src="https://image.flaticon.com/icons/svg/1828/1828817.svg">
        </div>
@@ -25,7 +25,7 @@
     </div>
     </div>
     <div class="userName">{{user.name()}}</div>
-    <div class="about"> {{user.bio}}
+    <div class="about"> {{user.info.bio}}
     </div>
    <div class="edit">
     <router-link tag="a" :to="{name: 'Edit'}">Edit profile</router-link>
