@@ -79,7 +79,7 @@ export default {
                 this.$router.push({
                     name: 'Profile'
                 });
-            }, 2000);
+            }, 500);
         }
     },
     components: {acceptLoader}
