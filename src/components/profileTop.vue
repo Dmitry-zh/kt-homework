@@ -56,13 +56,14 @@ export default {
     padding: 0;
 }
 .top {
+    top: 0;
     left: 0;
     position: fixed;
     z-index: 3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 5vh;
+    height: 6vh;
     width: 100vw;
     padding-top: 1vh;
     background: white;

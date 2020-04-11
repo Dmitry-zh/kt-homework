@@ -9,11 +9,18 @@
     <div class="underline" :class="{'tagged' : taged}">
     </div>
     <div class="gallery">
-        <div v-for="n in 50">
-            {{n}}
-        </div>
+        <template v-if="taged">
+            <div class="photo" v-for="(tag, index) in tagged" :key="index">
+                <img :src="tag.src">
+            </div>
+        </template>
+        <template v-else>
+            <div class="photo" v-for="(photo, index) in userPhotos" :key="index">
+                <img :src="photo">
+            </div>
+        </template>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -24,6 +31,15 @@ export default {
             taged: false,
         }
     },
+    computed: {
+        userPhotos() {
+            return this.$store.getters.userPhotos;
+        },
+        tagged() {
+            return this.$store.getters.taggedPhotos;
+        },
+    },
+    created() {}
 }
 </script>
 
@@ -84,18 +100,17 @@ export default {
 }
 
 .gallery {
-  display: grid;
-  grid-auto-flow: dense;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 33vw;
-  grid-gap: 1vw 1vw;
+    margin-top: 1vh;
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 33vw;
+    grid-gap: 1vw 1vw;
 }
 
-.gallery div {
-    font-size: 10vw;
-    font-weight: 600;
-    text-align: center;
-    align-self: center;
-    
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 </style>

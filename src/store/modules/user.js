@@ -1,6 +1,6 @@
 const state = {
     user: {
-        info :{
+        info: {
             login: '???',
             firstname: '???',
             surname: '???',
@@ -14,12 +14,229 @@ const state = {
         followers: 0,
         following: 0,
         publications: 0,
-        
+        photos: {
+            profile: [
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png',
+                './static/profile/profile.png'
+            ],
+            tagged: [{
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+                {
+                    src: './static/profile/tagged.png',
+                    authorId: 123,
+                },
+            ]
+        }
     }
 };
 
 const getters = {
     user: state => state.user,
+    userPhotos: state => state.user.photos.profile,
+    taggedPhotos: state => state.user.photos.tagged
 };
 
 const actions = {
