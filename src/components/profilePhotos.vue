@@ -22,8 +22,8 @@ export default {
     margin-top: 1vh;
     display: grid;
     grid-auto-flow: dense;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 33vw;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 31.5vw;
     grid-gap: 1vw 1vw;
 }
 

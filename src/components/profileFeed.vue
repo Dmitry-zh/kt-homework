@@ -52,6 +52,7 @@ export default {
 </script>
 
 <style scoped>
+
 .feedButtons {
     margin-top: 1vh;
     width: 100%;
@@ -109,7 +110,7 @@ export default {
 
 
 .slide-right-enter-active, .slide-right-leave-active{
-  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
 .slide-right-leave-to{
@@ -122,15 +123,15 @@ export default {
 }
 
 .slide-left-enter-active, .slide-left-leave-active{
-  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
 .slide-left-leave-to{
-  transform: translateX(100vw);
+  margin-left: 100vw;
   opacity: 0;
 }
 .slide-left-enter{
-  transform: translateX(100vw);
+  margin-left: 100vw;
   opacity: 0;
 }
 </style>
