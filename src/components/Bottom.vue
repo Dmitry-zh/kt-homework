@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 .bottom {
-  bottom: 0;
+  top: 92.5vh;
   left: 0;
   position: fixed;
   height: 8vh;

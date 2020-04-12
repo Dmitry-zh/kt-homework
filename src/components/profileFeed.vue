@@ -8,10 +8,18 @@
     </div>
     <div class="underline" :class="{'tagged' : taged}">
     </div>
-    <transition name="component-fade" mode="out-in">
+    <template v-if="taged">
+    <transition name="slide-left" mode="out-in">
     <component :is="currentView">
     </component>
     </transition>
+    </template>
+    <template v-else>
+    <transition name="slide-right" mode="out-in">
+    <component :is="currentView">
+    </component>
+    </transition>
+    </template>
 </div>
 </template>
 
@@ -99,11 +107,30 @@ export default {
     margin-left: 50%;
 }
 
-.component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .3s ease;
+
+.slide-right-enter-active, .slide-right-leave-active{
+  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active до версии 2.1.8 */ {
+
+.slide-right-leave-to{
+  transform: translateX(-100vw);
+  opacity: 0;
+}
+.slide-right-enter{
+  transform: translateX(-100vw);
+  opacity: 0;
+}
+
+.slide-left-enter-active, .slide-left-leave-active{
+  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-left-leave-to{
+  transform: translateX(100vw);
+  opacity: 0;
+}
+.slide-left-enter{
+  transform: translateX(100vw);
   opacity: 0;
 }
 </style>
