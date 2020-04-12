@@ -8,22 +8,16 @@
     </div>
     <div class="underline" :class="{'tagged' : taged}">
     </div>
-    <div class="gallery">
-        <template v-if="taged">
-            <div class="photo" v-for="(tag, index) in tagged" :key="index">
-                <img :src="tag.src">
-            </div>
-        </template>
-        <template v-else>
-            <div class="photo" v-for="(photo, index) in userPhotos" :key="index">
-                <img :src="photo">
-            </div>
-        </template>
-    </div>
-  </div>
+    <transition name="component-fade" mode="out-in">
+    <component :is="currentView">
+    </component>
+    </transition>
+</div>
 </template>
 
 <script>
+import profilePhotos from '@/components/profilePhotos.vue'
+import profileTaggedPhotos from '@/components/profileTaggedPhotos.vue'
 export default {
     name: 'profileFeed',
     data() {
@@ -38,8 +32,14 @@ export default {
         tagged() {
             return this.$store.getters.taggedPhotos;
         },
+        currentView() {
+            return this.taged?profileTaggedPhotos:profilePhotos
+        },
     },
-    created() {}
+    components: {
+        profilePhotos,
+        profileTaggedPhotos
+    },
 }
 </script>
 
@@ -99,18 +99,11 @@ export default {
     margin-left: 50%;
 }
 
-.gallery {
-    margin-top: 1vh;
-    display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 33vw;
-    grid-gap: 1vw 1vw;
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease;
 }
-
-.gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 </style>
