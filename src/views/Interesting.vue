@@ -21,6 +21,7 @@ import bottom from "@/components/Bottom.vue";
 import searchPanel from "@/components/searchPanel.vue";
 import interestsPanel from "@/components/interestsPanel.vue";
 import loader from "@/components/loader.vue";
+import axios from "axios";
 
 export default {
   data() {
@@ -58,10 +59,8 @@ export default {
       this.searchText = interest;
     }
   },
-  created: async function() {
-    let response = await fetch("./static/interesting.json");
-    this.imgs = await response.json();
-    this.imgs = this.imgs.photos;
+  created() {
+    axios.get('./static/interesting.json').then((response)=>this.imgs = response.data.photos);
     this.fetching = false;
   },
   mounted() {

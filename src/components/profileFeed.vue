@@ -54,7 +54,8 @@ export default {
 <style scoped>
 
 .feedButtons {
-    margin-top: 1vh;
+    top: 7.1vh;
+    position: sticky;
     width: 100%;
     grid-area: switch;
     padding-top: 0.5vh;
