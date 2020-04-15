@@ -2,14 +2,13 @@
   <div>
     <searchPanel :searchText="searchText" v-show="panelShown" />
     <interestsPanel
-      :interests="interests"
       @pickedInterest="pickInterest"
       :class="{'withPanel':panelShown}"
     />
     <loader v-if="fetching" />
     <div v-else class="gallery" :class="{'withPanel':panelShown}">
-      <div v-for="(img, index) of tagedImgs" :key="index">
-        <img :src="img.img" />
+      <div v-for="(img, index) of imgs ":key="index">
+        <img :src="img" />
       </div>
     </div>
     <bottom />
@@ -30,40 +29,40 @@ export default {
       scrollNow: 0,
       fetching: true,
       panelShown: true,
-      interests: [
-        "IGTV",
-        "Магазин",
-        "Фильмы",
-        "Музыка",
-        "Видеоигры",
-        "Еда",
-        "Мода",
-        "Природа",
-        "Наука"
-      ],
+      count: 25,
+      selectedInt: "",
+      offset: 0,
       searchText: "Тест",
-      imgs: []
+      pesHeaders: {
+    'Ocp-Apim-Subscription-Key' : '2037cc9985be4292a3aae7f12cafe423',
+    },
     };
   },
   computed: {
-    tagedImgs() {
-      if (this.imgs.map(item => item.tag).includes(this.searchText)) {
-        return this.imgs.filter(item => item.tag === this.searchText);
-      } else {
-        return this.imgs;
-      }
+    imgs() {
+      return this.$store.getters.imgs;
     }
   },
   methods: {
     pickInterest(interest) {
-      this.searchText = interest;
+      this.fetching = true;
+      this.selectedInt = interest;
+      axios.get(`https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=`
+      +encodeURIComponent(interest)
+      +"&count="+this.count
+      +"&offset="+this.offset, {headers : this.pesHeaders})
+      .then((response) => {
+        let payload = response.data.value.map((obj)=> {
+          this.imgs.push(obj.contentUrl);
+        });
+        this.$store.dispatch('newImgs', payload)
+        this.fetching = false;
+        window.scrollTo(0, document.body.clientHeight - document.documentElement.clientHeight);
+        panelShown = true;
+      });
     }
   },
   created() {
-    axios.get('./static/interesting.json').then((response)=>this.imgs = response.data.photos);
-    this.fetching = false;
-  },
-  mounted() {
     window.addEventListener("scroll", () => {
       this.scrollNow = window.scrollY;
       if (this.scrollNow > this.scrollY) {
@@ -71,8 +70,15 @@ export default {
       } else {
         this.panelShown = true;
       }
+      if (window.scrollY >= document.body.clientHeight - document.documentElement.clientHeight) {
+        this.offset+=25;
+        this.pickInterest(this.selectedInt);
+      }
       this.scrollY = this.scrollNow;
     });
+  },
+  mounted() {
+    this.pickInterest('Сиськи') // НЕ ЗАБЫТЬ УБРАТЬ В ПРОДАКШЕНЕ
   },
   metaInfo() {
     return {

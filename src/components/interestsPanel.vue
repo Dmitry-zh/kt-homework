@@ -12,15 +12,19 @@
 <script>
 export default {
   name: "interestsPanel",
-  props: {
-    interests: Array
+  computed: {
+    interests() {
+      return this.$store.getters.interests
+    }
   },
   methods: {
     pick(interest) {
+      this.$store.dispatch('delImgs');
       this.$emit("pickedInterest", interest);
+        }
+     
     }
-  }
-};
+  };
 </script>
 
 <style scoped>

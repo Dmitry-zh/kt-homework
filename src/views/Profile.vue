@@ -2,6 +2,8 @@
 <div class="box">
  <profileTop/>
  <profileFeed/>
+ <div style="top: 40vh">РЕАЛИЗУЙ ПРИМЕСИ НА ЗАГРУЗКУ КАРТИНОК (ИСПОЛЬЗУЮ В ДВУХ КОМПОНЕНТАХ)
+ </div>
  <bottom/>
  </div>
 </template>
