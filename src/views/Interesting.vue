@@ -5,12 +5,12 @@
       @pickedInterest="pickInterest"
       :class="{'withPanel':panelShown}"
     />
-    <loader v-if="fetching" />
-    <div v-else class="gallery" :class="{'withPanel':panelShown}">
+    <div class="gallery" :class="{'withPanel':panelShown}">
       <div v-for="(img, index) of imgs ":key="index">
         <img :src="img" />
       </div>
     </div>
+      <loader v-show="fetching" />
     <bottom />
   </div>
 </template>
@@ -57,7 +57,6 @@ export default {
         });
         this.$store.dispatch('newImgs', payload)
         this.fetching = false;
-        window.scrollTo(0, document.body.clientHeight - document.documentElement.clientHeight);
         panelShown = true;
       });
     }
