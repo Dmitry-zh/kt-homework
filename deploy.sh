@@ -1,25 +1,24 @@
-#!/usr/bin/env sh
 
-# остановить публикацию при ошибках
-set -e
+#git init
+#git add -A
+#git commit -m 'deploy'
 
-# сборка
+# build
 npm run build
 
-# переход в каталог сборки
-cd dist
+# target build.js is in different path on development and production of GitHub Pages
+# A better way should be using [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
+cp index.pages.html dist/index.html
 
-# если вы публикуете на пользовательский домен
-# echo 'www.example.com' > CNAME
+# navigate into the build output directory
+cd dist
 
 git init
 git add -A
 git commit -m 'deploy'
-
-
-# если вы публикуете по адресу https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
-# если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:Dmitry-zh/homework-public.git master:gh-pages
 
+# if you are deploying to https://<USERNAME>.github.io/<REPO>
+git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+git push -f https://github.com/Dmitry-zh/auth.git master:gh-pages
 cd -
