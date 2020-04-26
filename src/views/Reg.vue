@@ -16,9 +16,7 @@
     </div>
     <form @submit.prevent="addNewUser(newUser)">
         <div class="field">
-            <input v-model="newUser.login"
-            @input="checkLoginFree(newUser.login), checkLoginCorrectSymbols(newUser.login), checkLoginLength(newUser.login)"
-            placeholder="Ваш логин" />
+            <input v-model="newUser.login" @input="checkLoginFree(newUser.login), checkLoginCorrectSymbols(newUser.login), checkLoginLength(newUser.login)" placeholder="Ваш логин" />
             <div v-if="loginBusy" class="notChecked">
                 Пользователь уже существует
             </div>
@@ -30,15 +28,8 @@
             </div>
         </div>
         <div class="field pass">
-            <input v-if="passwordIsVisible"
-            v-model="newUser.password"
-            type="text"
-            @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)"
-            placeholder="Введите пароль" />
-            <input v-else v-model="newUser.password"
-            type="password"
-            @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)"
-            placeholder="Введите пароль" />
+            <input v-if="passwordIsVisible" v-model="newUser.password" type="text" @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)" placeholder="Введите пароль" />
+            <input v-else v-model="newUser.password" type="password" @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)" placeholder="Введите пароль" />
             <div class="eye" :class="{ 'opened': passwordIsVisible }" @click="passwordShown()">
             </div>
         </div>
@@ -49,36 +40,26 @@
             Длина пароля должна быть от 4 до 12 символов
         </div>
         <div class="field">
-            <input v-if="passwordIsVisible"
-            v-model="newUser.passwordTwice"
-            type="text"
-            placeholder="Повторите пароль" />
-            <input v-else v-model="newUser.passwordTwice"
-            type="password"
-            placeholder="Повторите пароль" />
+            <input v-if="passwordIsVisible" v-model="newUser.passwordTwice" type="text" placeholder="Повторите пароль" />
+            <input v-else v-model="newUser.passwordTwice" type="password" placeholder="Повторите пароль" />
             <div v-show="!equalPasswords" class="notChecked">
                 Пароли не совпадают
             </div>
         </div>
         <div class="field">
-            <input v-model.trim="newUser.name" placeholder="Ваше имя" />
+            <input v-model.trim="newUser.info.name" placeholder="Ваше имя" />
         </div>
         <div class="field">
-            <input v-model.trim="newUser.surname" placeholder="Ваша фамилия" />
+            <input v-model.trim="newUser.info.surname" placeholder="Ваша фамилия" />
         </div>
         <div class="field">
-            <input v-model.trim="newUser.email"
-            @input="checkMail(newUser.email)"
-            placeholder="Электронная почта" />
+            <input v-model.trim="newUser.email" @input="checkMail(newUser.email)" placeholder="Электронная почта" />
             <div v-show="wrongMail" class="notChecked">
                 Укажите корректный электронный адрес
             </div>
         </div>
         <div class="field">
-            <input v-model.number="newUser.age"
-            @input="checkAge()"
-            type="number"
-            placeholder="Полных лет" />
+            <input v-model.number="newUser.age" @input="checkAge()" type="number" placeholder="Полных лет" />
             <div v-show="wrongAge" class="notChecked">
                 Укажите корректный возраст
             </div>
@@ -111,11 +92,235 @@ export default {
                 login: "",
                 password: "",
                 passwordTwice: "",
-                name: "",
-                surname: "",
+                info: {
+                    name: "",
+                    surname: "",
+                    bio: "",
+                    website: "",
+                    avatarSrc: "",
+                },
                 age: "",
                 email: "",
                 registered: "",
+                followers: 0,
+                following: 0,
+                publications: 0,
+                photos: {
+                    profile: [
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png',
+                        './static/profile/profile.png'
+                    ],
+                    tagged: [{
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                        {
+                            src: './static/profile/tagged.png',
+                            authorId: 123,
+                        },
+                    ]
+                }
             },
             passwordIsVisible: false,
             rules: false,
@@ -172,9 +377,9 @@ export default {
                 usr
             });
             this.newUser = "";
-            this.$store.commit('SET_SESSION', usr.login)
+            this.$store.commit('SET_SESSION', usr)
             this.$router.push({
-                path: `/user/${usr.login}`,
+                path: `/home`,
                 params: this.$store.getters.auth
             })
         },
@@ -186,8 +391,8 @@ export default {
         canReg() {
             return this.rules && !this.wrongAge && !this.loginBusy && !this.wrongLoginSymbols && !this.wrongLoginLength &&
                 !this.wrongPasswordSymbols && !this.wrongPasswordLength && !this.wrongMail &&
-                this.newUser.login && this.newUser.password && this.newUser.name &&
-                this.newUser.surname && this.newUser.age && this.newUser.email
+                this.newUser.login && this.newUser.password && this.newUser.info.name &&
+                this.newUser.info.surname && this.newUser.age && this.newUser.email
         }
     },
     firestore() {

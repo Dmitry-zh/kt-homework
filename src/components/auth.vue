@@ -42,6 +42,7 @@ export default {
             password: "",
             errMessage: "",
             showPassword: false,
+            usrs: ""
         }
     },
     firestore() {
@@ -63,7 +64,7 @@ export default {
                 this.errMessage = "Такого пользователя не существует"
             } else {
                 if (usr[0].usr.password === pas) {
-                    this.$store.dispatch('commitSession', usr[0])
+                    this.$store.dispatch('commitSession', usr[0].usr)
                     //this.$router.push({path: `/user/${log}`, params: this.$store.getters.auth})
                 } else {
                     this.errMessage = "Неверный пароль"
@@ -73,7 +74,6 @@ export default {
     },
     created() {
         this.$store.dispatch('commitUsers', this.usrs)
-
     }
 }
 </script>

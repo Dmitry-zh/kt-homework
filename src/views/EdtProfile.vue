@@ -5,13 +5,13 @@
         <div class="topText">
             Edit ur profile
         </div>
-        <acceptLoader v-if="showLoader"/>
-        <div v-else class="accept" @click="confirm(user.info)" @touchstart="confirm(user.info)" >
+        <acceptLoader v-if="showLoader" />
+        <div v-else class="accept" @click="confirm()">
         </div>
     </div>
     <div class="avatar">
         <div class="avatarIco">
-            <img :src="user.info.avatarSrc">
+            <img :src="info.avatarSrc">
         </div>
         <div class="changeAvatar">
             Change avatar
@@ -23,33 +23,27 @@
                 <div class="fieldLabel">
                     Firstname
                 </div>
-                <input class="halfInput" v-model="user.info.firstname">
+                <input class="halfInput" v-model="info.name">
             </div>
 
             <div>
                 <div class="fieldLabel">
                     Surname
                 </div>
-                <input class="halfInput" v-model="user.info.surname">
+                <input class="halfInput" v-model="info.surname">
             </div>
-        </div>
-        <div class="container">
-            <div class="fieldLabel">
-                Login
-            </div>
-            <input v-model="user.info.login">
         </div>
         <div class="container">
             <div class="fieldLabel">
                 Website
             </div>
-            <input v-model="user.info.website">
+            <input v-model="info.website">
         </div>
         <div class="container">
             <div class="fieldLabel">
                 Bio
             </div>
-            <input v-model="user.info.bio">
+            <input v-model="info.bio">
         </div>
     </div>
 
@@ -58,31 +52,52 @@
 
 <script>
 import acceptLoader from "@/components/acceptLoader.vue";
+import {
+    db
+} from '../main.js'
 
 export default {
     data() {
         return {
             showLoader: false,
+            user: '',
+        }
+    },
+    firestore() {
+        return {
+            user: db
+                .collection('users')
+                .where('usr.login', '==', this.$store.getters.auth.login),
         }
     },
     computed: {
-        user() {
-            return this.$store.getters.user;
+        info() {
+           return this.$store.getters.auth.info
         }
     },
     methods: {
-        confirm(userInformation) {
-            this.$store.dispatch('changeUserInfo', userInformation);
+        confirm() {
             this.showLoader = true;
+            this.$store.dispatch('changeUserInfo', this.info)
+            let ne = {usr : this.$store.getters.auth}
+            db.collection('users')
+                .doc(this.user[0].id)
+                .set(ne)
+                .then(() => {
+                    console.log('user updated!')
+                })
+ 
             setTimeout(() => {
                 this.showLoader = false;
                 this.$router.push({
                     name: 'Profile'
                 });
-            }, 500);
+            }, 500); 
         }
     },
-    components: {acceptLoader}
+    components: {
+        acceptLoader
+    }
 }
 </script>
 

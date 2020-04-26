@@ -2,7 +2,7 @@
 <div class="box">
     <div class="top">
         <div class="profileName">
-            {{user.info.login}}
+            {{user.login}}
         </div>
         <div class="menu">
             <img src="https://image.flaticon.com/icons/svg/545/545705.svg">
@@ -11,7 +11,7 @@
     <div class="info">
         <div class="avatar">
             <div class="avatarImg">
-                <img :src="user.info.avatarSrc">
+                <img :src="user.avatarSrc">
                 <div class="plus">
                     <img src="https://image.flaticon.com/icons/svg/1828/1828817.svg">
                 </div>
@@ -27,7 +27,7 @@
             <div class="count">{{user.following}}</div>Following
         </div>
     </div>
-    <div class="userName">{{user.name()}}</div>
+    <div class="userName">{{user.info.name}} {{user.info.surname}}</div>
     <div class="about"> {{user.info.bio}}
     </div>
     <router-link class="edit" tag="a" :to="{name: 'Edit'}">
@@ -44,9 +44,9 @@ export default {
     name: 'profileTop',
     computed: {
         user() {
-            return this.$store.getters.user;
+            return this.$store.getters.auth;
         }
-    }
+    },
 }
 </script>
 
