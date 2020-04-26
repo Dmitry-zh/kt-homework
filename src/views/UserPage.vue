@@ -15,7 +15,7 @@ export default {
   },
     computed: {
         checkUser() {
-            return this.$attrs.login === this.$store.getters.auth
+            return this.$attrs.login === this.$store.getters.auth.login
         }
     },
 }

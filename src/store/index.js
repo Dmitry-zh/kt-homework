@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import user from './modules/user'
-import interestingContent from './modules/intrestingContent'
+import users from './modules/users'
+import session from './modules/session'
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    user,
-    interestingContent
-  }
+    users,
+    session,
+   // user,
+   // interestingContent,
+  },
+  plugins: [createPersistedState()],
 })

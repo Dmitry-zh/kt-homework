@@ -1,7 +1,7 @@
 <template>
 <div class="box">
     <router-link tag="div" class="back" :to="{ name: 'Home' }">
-        &lt; Вернуться
+        &#9665; Вернуться
     </router-link>
     <div class="welcomeMessage">
         <div class="logo">
@@ -10,13 +10,15 @@
         </div>
         <div class="txt">
             Зарегистрируйтесь, что бы<br />
-            увидеть на попы ваших подруг<br />
+            смотреть на попы ваших подруг<br />
             и милых котиков
         </div>
     </div>
     <form @submit.prevent="addNewUser(newUser)">
         <div class="field">
-            <input v-model="newUser.login" @input="checkLoginFree(newUser.login), checkLoginCorrectSymbols(newUser.login), checkLoginLength(newUser.login)" placeholder="Ваш логин" />
+            <input v-model="newUser.login"
+            @input="checkLoginFree(newUser.login), checkLoginCorrectSymbols(newUser.login), checkLoginLength(newUser.login)"
+            placeholder="Ваш логин" />
             <div v-if="loginBusy" class="notChecked">
                 Пользователь уже существует
             </div>
@@ -28,8 +30,15 @@
             </div>
         </div>
         <div class="field pass">
-            <input v-if="passwordIsVisible" v-model="newUser.password" type="text" @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)" placeholder="Введите пароль" />
-            <input v-else v-model="newUser.password" type="password" @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)" placeholder="Введите пароль" />
+            <input v-if="passwordIsVisible"
+            v-model="newUser.password"
+            type="text"
+            @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)"
+            placeholder="Введите пароль" />
+            <input v-else v-model="newUser.password"
+            type="password"
+            @input="checkPasswordCorrectSymbols(newUser.password), checkPasswordLength(newUser.password)"
+            placeholder="Введите пароль" />
             <div class="eye" :class="{ 'opened': passwordIsVisible }" @click="passwordShown()">
             </div>
         </div>
@@ -40,8 +49,13 @@
             Длина пароля должна быть от 4 до 12 символов
         </div>
         <div class="field">
-            <input v-if="passwordIsVisible" v-model="newUser.passwordTwice" type="text" placeholder="Повторите пароль" />
-            <input v-else v-model="newUser.passwordTwice" type="password" placeholder="Повторите пароль" />
+            <input v-if="passwordIsVisible"
+            v-model="newUser.passwordTwice"
+            type="text"
+            placeholder="Повторите пароль" />
+            <input v-else v-model="newUser.passwordTwice"
+            type="password"
+            placeholder="Повторите пароль" />
             <div v-show="!equalPasswords" class="notChecked">
                 Пароли не совпадают
             </div>
@@ -53,13 +67,18 @@
             <input v-model.trim="newUser.surname" placeholder="Ваша фамилия" />
         </div>
         <div class="field">
-            <input v-model.trim="newUser.email" @input="checkMail(newUser.email)" placeholder="Электронная почта" />
+            <input v-model.trim="newUser.email"
+            @input="checkMail(newUser.email)"
+            placeholder="Электронная почта" />
             <div v-show="wrongMail" class="notChecked">
                 Укажите корректный электронный адрес
             </div>
         </div>
         <div class="field">
-            <input v-model.number="newUser.age" @input="checkAge()" type="number" placeholder="Полных лет" />
+            <input v-model.number="newUser.age"
+            @input="checkAge()"
+            type="number"
+            placeholder="Полных лет" />
             <div v-show="wrongAge" class="notChecked">
                 Укажите корректный возраст
             </div>
@@ -83,9 +102,9 @@ import {
 
 export default {
     name: 'Reg',
-        metaInfo: {
-    title: 'Регистрация'
-  },
+    metaInfo: {
+        title: 'Регистрация'
+    },
     data() {
         return {
             newUser: {
@@ -256,8 +275,6 @@ form .field input {
 .eye.opened {
     background: no-repeat center/100% url(https://image.flaticon.com/icons/svg/2210/2210317.svg)
 }
-
-.eye .closed {}
 
 form .rules {
     display: flex;

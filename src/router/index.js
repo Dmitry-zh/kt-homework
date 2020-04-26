@@ -7,6 +7,10 @@ import Interesting from '@/views/Interesting'
 import Profile from '@/views/Profile'
 import Upload from '@/views/Upload'
 import EdtProfile from '@/views/EdtProfile'
+import Reg from '@/views/Reg'
+import Meta from 'vue-meta'
+
+Vue.use(Meta)
 Vue.use(VueRouter)
 
 const routes = [
@@ -46,6 +50,17 @@ const routes = [
     component: EdtProfile
   },
   {
+    path: '/registration',
+    name: 'Reg',
+    component: Reg
+  },
+  {
+    path: '/user/:login',
+    name: 'UserPage',
+    component: () => import('../views/UserPage.vue'),
+    props: true
+  },
+  {
     path: '*',
     redirect: '/home'
   },
@@ -53,7 +68,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: 'kt-homework',
+  base: process.env.BASE_URL,
   routes
 })
 

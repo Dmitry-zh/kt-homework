@@ -7,13 +7,20 @@ const getters = {
 };
 
 const mutations = {
-    'SET_SESSION' (state, login) {
-        state.auth = login
+    'SET_SESSION' (state, user) {
+        state.auth = user
     }
 };
+
+const actions = {
+    commitSession: ({commit}, userObj) => {
+        commit('SET_SESSION', userObj);
+    },
+}
 
 export default {
     state,
     getters,
-    mutations
+    mutations,
+    actions
 }
