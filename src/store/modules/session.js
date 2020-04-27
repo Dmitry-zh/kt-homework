@@ -12,6 +12,9 @@ const mutations = {
     },
     mutateUserInfo(state, info) {
         state.auth.info = info;
+    },
+    mutateUserAvatar(state, img) {
+        state.auth.info.avatarSrc = img
     }
 };
 
@@ -22,6 +25,9 @@ const actions = {
     changeUserInfo: ({commit}, info) => {
         commit('mutateUserInfo', info);
     },
+    changeAvatar: ({commit}, src) => {
+        commit('mutateUserAvatar', src);
+    }
 }
 
 export default {

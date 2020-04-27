@@ -11,10 +11,11 @@
     </div>
     <div class="avatar">
         <div class="avatarIco">
-            <img :src="info.avatarSrc">
+            <img :src="this.$store.getters.auth.info.avatarSrc">
         </div>
         <div class="changeAvatar">
-            Change avatar
+            <input type="file" accept="image/*" @change="previewImage">
+            <button @click="onUpload()">Upload</button>
         </div>
     </div>
     <div class="form">
@@ -55,12 +56,14 @@ import acceptLoader from "@/components/acceptLoader.vue";
 import {
     db
 } from '../main.js'
+import firebase from 'firebase'
 
 export default {
     data() {
         return {
             showLoader: false,
             user: '',
+            imageData: null,
         }
     },
     firestore() {
@@ -72,27 +75,47 @@ export default {
     },
     computed: {
         info() {
-           return this.$store.getters.auth.info
+            return this.$store.getters.auth.info
         }
     },
     methods: {
         confirm() {
             this.showLoader = true;
             this.$store.dispatch('changeUserInfo', this.info)
-            let ne = {usr : this.$store.getters.auth}
+            let ne = {
+                usr: this.$store.getters.auth
+            }
             db.collection('users')
                 .doc(this.user[0].id)
                 .set(ne)
                 .then(() => {
                     console.log('user updated!')
                 })
- 
             setTimeout(() => {
                 this.showLoader = false;
                 this.$router.push({
                     name: 'Profile'
                 });
-            }, 500); 
+            }, 500);
+        },
+        previewImage(event) {
+            this.imageData = event.target.files[0];
+        },
+        onUpload() {
+            if (!this.imageData) return
+            const storageRef = firebase.storage().ref(`${this.$store.getters.auth.login}/${this.imageData.name}`).put(this.imageData);
+            storageRef.on(`state_changed`, snapshot => {
+                    this.showLoader = true;
+                }, error => {
+                    console.log(error.message)
+                },
+                () => {
+                    this.showLoader = false;
+                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                        this.$store.dispatch('changeAvatar', url)
+                    });
+                }
+            );
         }
     },
     components: {
