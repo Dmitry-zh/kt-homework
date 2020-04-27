@@ -97,7 +97,7 @@ export default {
                     surname: "",
                     bio: "",
                     website: "",
-                    avatarSrc: "",
+                    avatarSrc: "./static/ico/standardProfile.png",
                 },
                 age: "",
                 email: "",

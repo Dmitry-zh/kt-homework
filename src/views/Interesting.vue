@@ -21,6 +21,7 @@ import searchPanel from "@/components/searchPanel.vue";
 import interestsPanel from "@/components/interestsPanel.vue";
 import loader from "@/components/loader.vue";
 import axios from "axios";
+import checkAuth from '../../public/static/mixins/checkAuth.js'
 
 export default {
   data() {
@@ -84,7 +85,8 @@ export default {
       title: "Интересное"
     };
   },
-  components: { bottom, searchPanel, interestsPanel, loader }
+  components: { bottom, searchPanel, interestsPanel, loader },
+  mixins: [checkAuth]
 };
 </script>
 

@@ -7,12 +7,13 @@
 
 <script>
 import bottom from '@/components/Bottom.vue'
+
 export default {
   data() {
       return {
 
       }
   },
-  components: {bottom}  
+  components: {bottom}, 
 }
 </script>

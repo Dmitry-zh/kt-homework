@@ -1,20 +1,21 @@
 <template>
 <div class="box">
     <div class="top">
-        <div class="profileName">
+        <div class="profileName" @click="showExit=!showExit" :class="{'arrowDwn' : showExit}">
             {{user.login}}
         </div>
+
         <div class="menu">
             <img src="https://image.flaticon.com/icons/svg/545/545705.svg">
         </div>
     </div>
-    <div class="info">
+    <div v-show="showExit" class="extBtn" @click="exit()">
+        Выйти
+    </div>
+    <div class="info" :class="{'mgnZero': showExit }">
         <div class="avatar">
             <div class="avatarImg">
-                <img :src="user.avatarSrc">
-                <div class="plus">
-                    <img src="https://image.flaticon.com/icons/svg/1828/1828817.svg">
-                </div>
+                <img :src="user.info.avatarSrc">
             </div>
         </div>
         <div class="publications">
@@ -30,6 +31,8 @@
     <div class="userName">{{user.info.name}} {{user.info.surname}}</div>
     <div class="about"> {{user.info.bio}}
     </div>
+    <div class="about"> {{user.info.website}}
+    </div>
     <router-link class="edit" tag="a" :to="{name: 'Edit'}">
         <div>
             Edit profile
@@ -42,9 +45,21 @@
 <script>
 export default {
     name: 'profileTop',
+    data() {
+        return {
+            showExit: false
+        }
+
+    },
     computed: {
         user() {
             return this.$store.getters.auth;
+        }
+    },
+        methods: {
+        exit() {
+            this.$store.dispatch('commitSession', false)
+            this.$router.replace({name: 'Home'})
         }
     },
 }
@@ -55,6 +70,7 @@ export default {
     margin: 0;
     padding: 0;
 }
+
 .top {
     top: 0;
     left: 0;
@@ -82,7 +98,17 @@ export default {
 }
 
 .top .profileName::after {
-    content: "▾"
+    content: "\25B7"
+}
+
+.top .profileName.arrowDwn::after {
+    content: "\25BD"
+}
+
+.extBtn {
+    margin-top: 6.6vh;
+    font-weight: 800;
+    letter-spacing: 0.08rem;
 }
 
 .info {
@@ -90,9 +116,13 @@ export default {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     grid-gap: 1vw;
-    padding-top: 6.2vh;
+    padding-top: 6vh;
     height: 15vh;
     grid-template-areas: "avatar publications followers  following";
+}
+
+.info.mgnZero {
+    padding-top: 0;
 }
 
 .info .avatar {

@@ -1,30 +1,37 @@
 <template>
 <div class="box">
- <profileTop/>
- <profileFeed/>
- <div style="top: 40vh">РЕАЛИЗУЙ ПРИМЕСИ НА ЗАГРУЗКУ КАРТИНОК (ИСПОЛЬЗУЮ В ДВУХ КОМПОНЕНТАХ)
- </div>
- <bottom/>
- </div>
+    <profileTop />
+    <profileFeed />
+    <div style="top: 40vh">РЕАЛИЗУЙ ПРИМЕСИ НА ЗАГРУЗКУ КАРТИНОК (ИСПОЛЬЗУЮ В ДВУХ КОМПОНЕНТАХ)
+    </div>
+    <bottom />
+</div>
 </template>
 
 <script>
 import bottom from '@/components/Bottom.vue'
 import profileTop from '@/components/profileTop.vue'
 import profileFeed from '@/components/profileFeed.vue'
-export default {
-  data() {
-      return {
+//import checkAuth from '../../public/static/mixins/checkAuth.js'
 
-      }
-  },
-  components: {bottom, profileTop, profileFeed}  
+export default {
+    data() {
+        return {
+
+        }
+    },
+    components: {
+        bottom,
+        profileTop,
+        profileFeed
+    },
+  //  mixins: [checkAuth],
 }
 </script>
 
 <style scoped>
 .box {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 </style>

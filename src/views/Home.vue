@@ -6,7 +6,6 @@
     <div v-else>
         <homeHeader />
         <stories />
-        <div class="testbtn" @click="exit()">ВЫЙТИ</div>
         <bottom />
     </div>
 </div>
@@ -30,11 +29,6 @@ export default {
         homeHeader,
         stories,
         auth
-    },
-    methods: {
-        exit() {
-            this.$store.dispatch('commitSession', false)
-        }
     },
     computed: {
         checkAuth() {

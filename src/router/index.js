@@ -13,8 +13,7 @@ import Meta from 'vue-meta'
 Vue.use(Meta)
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/home',
     name: 'Home',
     component: Home
@@ -71,5 +70,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router
