@@ -56,10 +56,12 @@ export default {
             return this.$store.getters.auth;
         }
     },
-        methods: {
+    methods: {
         exit() {
             this.$store.dispatch('commitSession', false)
-            this.$router.replace({name: 'Home'})
+            this.$router.replace({
+                name: 'Home'
+            })
         }
     },
 }
@@ -143,8 +145,9 @@ export default {
 }
 
 .info .avatar .avatarImg img {
+    width: 100%;
     max-height: 15vh;
-    max-width: 100%;
+    object-fit: cover;
     border-radius: 50%;
 }
 

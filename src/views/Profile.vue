@@ -20,6 +20,9 @@ export default {
 
         }
     },
+    metaInfo: {
+        title: 'Профиль'
+    },
     components: {
         bottom,
         profileTop,

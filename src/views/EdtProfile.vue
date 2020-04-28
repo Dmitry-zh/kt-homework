@@ -14,8 +14,8 @@
             <img :src="this.$store.getters.auth.info.avatarSrc">
         </div>
         <div class="changeAvatar">
-            <input type="file" accept="image/*" @change="previewImage">
-            <button @click="onUpload()">Upload</button>
+            <input type="file" id="loadImg" accept="image/*" @change="previewImage">
+            <label for="loadImg">{{labelText}}</label>
         </div>
     </div>
     <div class="form">
@@ -64,8 +64,14 @@ export default {
             showLoader: false,
             user: '',
             imageData: null,
+            loadedPhoto: null,
         }
     },
+   metaInfo() {
+    return {
+      title: "Редактировать профиль"
+    };
+  },
     firestore() {
         return {
             user: db
@@ -76,6 +82,9 @@ export default {
     computed: {
         info() {
             return this.$store.getters.auth.info
+        },
+        labelText() {
+            return this.loadedPhoto ? 'Фотография загружена' : 'Сменить фотографию'
         }
     },
     methods: {
@@ -100,8 +109,9 @@ export default {
         },
         previewImage(event) {
             this.imageData = event.target.files[0];
+            this.uploadAvatar()
         },
-        onUpload() {
+        uploadAvatar() {
             if (!this.imageData) return
             const storageRef = firebase.storage().ref(`${this.$store.getters.auth.login}/${this.imageData.name}`).put(this.imageData);
             storageRef.on(`state_changed`, snapshot => {
@@ -111,6 +121,7 @@ export default {
                 },
                 () => {
                     this.showLoader = false;
+                    this.loadedPhoto = this.imageData
                     storageRef.snapshot.ref.getDownloadURL().then((url) => {
                         this.$store.dispatch('changeAvatar', url)
                     });
@@ -159,13 +170,14 @@ export default {
 }
 
 .avatar .avatarIco {
-    width: 10vh;
-    height: 10vh;
+    width: 30vh;
+    height: 30vh;
     margin: 1vh 0 1vh 0;
 }
 
 .avatar .avatarIco img {
-    width: 100%;
+    max-width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -205,6 +217,26 @@ input {
     margin-bottom: 2vh;
     border-style: hidden hidden solid hidden;
     border-color: darkgray;
+}
+
+input[type="file"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+}
+
+input[type="file"] + label {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin-top: 10px;
+    background: royalblue;
+    font-size: 16px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    width: 80%;
 }
 
 .halfInput {
