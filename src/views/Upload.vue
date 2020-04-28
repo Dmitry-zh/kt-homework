@@ -19,6 +19,11 @@ export default {
             uploadValue: 0,
         }
     },
+    metaInfo() {
+        return {
+            title: "Загрузить фото"
+        };
+    },
     methods: {
         previewImage(event) {
             this.uploadValue = 0;

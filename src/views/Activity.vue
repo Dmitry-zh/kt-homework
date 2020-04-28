@@ -13,6 +13,11 @@ export default {
 
       }
   },
+  metaInfo() {
+        return {
+            title: "Активность"
+        };
+    },
   components: {bottom},
 }
 </script>

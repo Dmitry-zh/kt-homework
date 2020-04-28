@@ -176,7 +176,7 @@ export default {
 }
 
 .avatar .avatarIco img {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
