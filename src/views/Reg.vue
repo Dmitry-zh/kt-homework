@@ -346,7 +346,7 @@ export default {
             this.loginBusy = arr.length > 0 ? true : false
         },
         checkLoginCorrectSymbols(log) {
-            this.wrongLoginSymbols = !/^[a-zA-Z1-9]+$/.test(log)
+            this.wrongLoginSymbols = !/^[a-zA-Z0-9]+$/.test(log)
         },
         checkLoginLength(log) {
             this.wrongLoginLength = log.length < 4 || log.length > 12
@@ -357,8 +357,8 @@ export default {
                 mail.split("@")[1].split(".").length === 2 &&
                 mail.split("@")[1].split(".")[1] &&
                 /^[a-zA-Z]+$/.test(mail.split("@")[1].split(".")[1]) &&
-                /^[a-zA-Z1-9]+$/.test(mail.split("@")[0]) &&
-                /^[a-zA-Z1-9]+$/.test(mail.split("@")[1].split(".")[0])
+                /^[a-zA-Z0-9.]+$/.test(mail.split("@")[0]) &&
+                /^[a-zA-Z0-9.]+$/.test(mail.split("@")[1].split(".")[0])
             ) {
                 this.wrongMail = false
             } else {
